@@ -1,0 +1,54 @@
+@startuml
+
+Class ServletController {
+}
+
+Class LogicController {
+}
+
+Class User {
+}
+
+Class DAO {
+    +DBConnector con
+}
+
+Class Order {
+}
+
+Class DBConnector {
+}
+
+Class ShoppingBasket {
+}
+
+Class LineItem {
+    +Cupcake cupcake
+}
+
+Class Cupcake{
+    +Bottom bottom
+    +Topping topping
+}
+Class Bottom {
+}
+
+Class Topping {
+}
+
+ServletController -- LogicController
+DAO *-- DBConnector
+DAO --{ User
+DAO --{ Bottom
+DAO --{ Topping
+DAO --{ Order
+ServletController -- DAO
+ServletController --{ User
+ServletController -- ShoppingBasket
+ShoppingBasket --{ LineItem
+LineItem -- Cupcake
+Cupcake *-- Bottom
+Cupcake *-- Topping
+
+
+@enduml
