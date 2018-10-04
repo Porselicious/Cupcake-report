@@ -1,0 +1,23 @@
+@startuml
+
+title "Buying Cupcake - Sequence Diagram"
+
+actor User
+boundary "products.jsp" as Products
+control "ServletController" as SC
+entity "LogicController" as LC
+boundary "shoppingBasket.jsp" as SB
+entity "DAO" as DAO
+database Database
+
+autonumber
+
+User -> Products : User clicks "choose cupcake"
+Products -> SC : case "addToCart"
+SC -> LC : generateShoppingCart()
+SC -> SB : Show shoppingCart.jsp
+SB -> SC : User clicks "Checkout"
+SC -> DAO : dao.addOrder()
+DAO -> Database : add Order to DB
+
+@enduml
