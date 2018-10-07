@@ -4,9 +4,9 @@ title "Buying Cupcake - Sequence Diagram"
 
 actor User
 boundary "products.jsp" as Products
+boundary "shoppingBasket.jsp" as SB
 control "ServletController" as SC
 entity "LogicController" as LC
-boundary "shoppingBasket.jsp" as SB
 entity "DAO" as DAO
 database Database
 
@@ -15,6 +15,7 @@ autonumber
 User -> Products : User clicks "choose cupcake"
 Products -> SC : case "addToCart"
 SC -> LC : generateShoppingCart()
+LC --> SC : String HTML
 SC -> SB : Show shoppingCart.jsp
 SB -> SC : User clicks "Checkout"
 SC -> DAO : dao.addOrder()

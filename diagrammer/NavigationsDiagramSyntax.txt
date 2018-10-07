@@ -1,0 +1,39 @@
+@startuml
+
+title Navigationsdiagram
+[*] --> notLoggedIn
+state notLoggedIn
+
+state "Not logged in topmenu" as notLoggedIn {
+[*] --> Index
+  state Index
+  state Products
+  state Login
+  state SignUp
+  Index --> Products
+  Products --> Login
+  Index --> Login
+  Index --> SignUp
+  SignUp --> LoggedIn
+  Login --> LoggedIn
+}
+
+state LoggedIn
+
+state "Logged in topmenu" as LoggedIn {
+[*] --> Index2
+  state Index2
+  state Products2
+  state Logout
+  state ShoppingBasket
+  state Checkout
+  Logout --> notLoggedIn
+  Index2 --> Logout
+  Index2 --> Products2
+  Products2 --> ShoppingBasket
+  ShoppingBasket --> Products2 : Continue Shopping
+  ShoppingBasket --> Checkout : Buy cake
+  Checkout --> Index2
+}
+
+@enduml
